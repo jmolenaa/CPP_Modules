@@ -18,14 +18,16 @@
 class Phonebook {
 
 private:
+
 	Contact	_contacts[8];
 	int		_phonebookSize;
-	int		_currentIndex;
+	void	_displayAllContacts();
+	int		_askForIndex() const;
 
 public:
 	Phonebook();
 	~Phonebook();
-	void	printStuff() const;
+	void	search();
 	void	addContact();
 };
 

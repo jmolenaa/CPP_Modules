@@ -26,14 +26,16 @@ private:
 	std :: string	_darkestSecret;
 
 public:
+
 	bool	setFirstName();
 	bool	setLastName();
 	bool	setNickName();
 	bool	setPhoneNumber();
 	bool	setDarkestSecret();
-
-//	Contact();
-//	~Contact();
+	void	displayContact(int index);
+	void	displayAllInfo();
+	Contact();
+	~Contact();
 
 };
 
