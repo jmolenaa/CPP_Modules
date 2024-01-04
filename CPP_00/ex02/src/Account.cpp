@@ -1,6 +1,7 @@
 #include "Account.hpp"
 #include <iostream>
 #include <ctime>
+#include <iomanip>
 
 Account::Account(int initial_deposit) :	_accountIndex(getNbAccounts()), _amount(initial_deposit),
 										_nbDeposits(0), _nbWithdrawals(0){
@@ -76,25 +77,11 @@ void Account::displayStatus() const {
 				<< ";deposits:" << this->_nbDeposits << ";withdrawals:" << this->_nbWithdrawals << '\n';
 }
 
-static void	displayPartOfDate(int number) {
-	if (number < 10)
-		std :: cout << '0';
-	std :: cout << number;
-}
-
 void Account::_displayTimestamp() {
-	time_t		now = time(0);
-	struct tm	*current_time = localtime(&now);
+	time_t				now = time(0);
+	struct std :: tm	*current_time = localtime(&now);
 
-	std :: cout << '[';
-	displayPartOfDate(current_time->tm_year + 1900);
-	displayPartOfDate(current_time->tm_mon + 1);
-	displayPartOfDate(current_time->tm_mday);
-	std :: cout << '_';
-	displayPartOfDate(current_time->tm_hour);
-	displayPartOfDate(current_time->tm_min);
-	displayPartOfDate(current_time->tm_sec);
-	std :: cout << ']';
+	std :: cout << std :: put_time(current_time, "[%Y%m%d_%H%M%S]");
 }
 
 int Account::_nbAccounts = 0;

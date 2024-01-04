@@ -8,7 +8,7 @@ END=\033[0m
 
 # variables
 
-NAME = bananaphone
+NAME = phonebook
 HEADERS  = incs/Contact.hpp incs/Phonebook.hpp
 SRC_FILES = main.cpp Contact.cpp Phonebook.cpp
 OBJ_FILES = $(SRC_FILES:%.cpp=obj/%.o)

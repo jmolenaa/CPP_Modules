@@ -14,7 +14,7 @@
 
 int main(int argc, char *argv[])
 {
-    std :: string  word;
+    std :: string	word;
 
     if (argc == 1)
         std :: cout << "* LOUD AND UNBEARABLE FEEDBACK NOISE *";
