@@ -5,24 +5,26 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: jmolenaa <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/04 17:19:09 by jmolenaa          #+#    #+#             */
-/*   Updated: 2024/01/04 17:19:11 by jmolenaa         ###   ########.fr       */
+/*   Created: 2024/01/06 12:45:24 by jmolenaa          #+#    #+#             */
+/*   Updated: 2024/01/06 12:45:26 by jmolenaa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Zombie.hpp"
 #include <iostream>
 
-Zombie*	zombieHorde(int N, std :: string name);
+int main(){
+	std :: string	hi = "HI THIS IS BRAIN";
+	std :: string*	stringPTR = &hi;
+	std :: string&	stringREF = hi;
 
-int	main(){
+	std :: cout	<< "Memory addresses\n"
+				<< &hi << "\n"
+				<< stringPTR << "\n"
+				<< &stringREF << "\n\n";
 
-	Zombie*	zombies;
-	int		N = 10;
+	std :: cout	<< "Values\n"
+				<< hi << "\n"
+				<< *stringPTR << "\n"
+				<< stringREF << "\n";
 
-	zombies = zombieHorde(N, "NPC");
-	for (int i = 0; i < N; i++) {
-		zombies[i].announce();
-	}
-	delete [] zombies;
 }

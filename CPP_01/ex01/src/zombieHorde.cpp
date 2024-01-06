@@ -11,13 +11,19 @@
 /* ************************************************************************** */
 
 #include "Zombie.hpp"
+#include <iostream>
 
 Zombie*	zombieHorde(int N, std :: string name){
 	Zombie*	zombies;
 
-	if (N < 0)
+	if (N <= 0)
 		return nullptr;
-	zombies = new Zombie[N];
+	try {
+		zombies = new Zombie[N];
+	}
+	catch (std :: bad_alloc &ex) {
+		std :: cerr << "Memory allocation failure\n";
+	}
 	for (int i = 0; i < N; i++) {
 		zombies[i].setName(name);
 	}
