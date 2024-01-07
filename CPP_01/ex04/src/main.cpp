@@ -26,7 +26,7 @@ bool	handleErrors(int argc, char *argv[]){
 	return true;
 }
 
-bool	openFiles(std::ifstream& file, std::ofstream& output_file, char* argv) {
+bool	openFiles(std::ifstream& file, std::ofstream& output_file, const char* argv) {
 
 	std::string	fileName = argv;
 	file.open(fileName);
@@ -43,6 +43,28 @@ bool	openFiles(std::ifstream& file, std::ofstream& output_file, char* argv) {
 	return true;
 }
 
+void	replaceStringsAndWriteToFile(std::ifstream& file, std::ofstream& output_file, std::string s1, std::string s2){
+	std::string	line;
+	size_t		pos;
+	size_t		start;
+
+	while (std::getline(file, line)){
+
+		start = 0;
+		while (line.find(s1, start) != std::string::npos){
+			pos = line.find(s1, start);
+			output_file << line.substr(start, pos - start) << s2;
+			start = pos + s1.length();
+		}
+		output_file << line.substr(start);
+
+		if (!file.eof()) {
+			output_file << "\n";
+		}
+	}
+	output_file.flush();
+}
+
 int main(int argc, char *argv[])
 {
 	std::ifstream file;
@@ -55,5 +77,5 @@ int main(int argc, char *argv[])
 		return 1;
 	}
 
-	std::cout<<file.is_open();
+	replaceStringsAndWriteToFile(file, output_file, argv[2], argv[3]);
 }

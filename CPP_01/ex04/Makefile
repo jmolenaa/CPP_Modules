@@ -8,7 +8,7 @@ END=\033[0m
 
 # variables
 
-NAME = loser
+NAME = sed
 HEADER_FILES  =
 SRC_FILES = main.cpp
 OBJ_FILES = $(SRC_FILES:%.cpp=obj/%.o)
@@ -41,6 +41,7 @@ $(OBJ_DIR):
 clean:
 	@echo "${RED}Removing objs${END}"
 	@rm -rf $(OBJ_DIR)
+	@rm -rf *.replace
 
 fclean: clean
 	@echo "${RED}Removing ${NAME} ${END}"
