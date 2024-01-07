@@ -13,21 +13,24 @@
 #include "Harl.hpp"
 #include <iostream>
 
-int	main(){
+bool	checkForValidInput(std::string level) {
+	if (level == "DEBUG" || level == "INFO" || level == "WARNING" || level == "ERROR") {
+		return true;
+	}
+	return false;
+}
+
+int	main(int argc, char *argv[]){
 	Harl	Harl;
 
-	std::cout << "\nDebugging\n";
-	Harl.complain("DEBUG");
-
-	std::cout << "\nInfo\n";
-	Harl.complain("INFO");
-
-	std::cout << "\nWarning\n";
-	Harl.complain("WARNING");
-
-	std::cout << "\nErrors\n";
-	Harl.complain("ERROR");
-
-	std::cout << "\nRandom input\n";
-	Harl.complain("LOL");
+	if (argc != 2){
+		std::cerr << "Incorrect amount of arguments\n";
+		return 1;
+	}
+	if (checkForValidInput(argv[1]) == false){
+		std::cerr << "Invalid complaint\n";
+		return 1;
+	}
+	Harl.complain(argv[1]);
+	return 0;
 }

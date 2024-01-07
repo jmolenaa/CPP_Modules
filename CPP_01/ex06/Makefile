@@ -8,7 +8,7 @@ END=\033[0m
 
 # variables
 
-NAME = Harl
+NAME = harlFilter
 HEADER_FILES = Harl.hpp
 SRC_FILES = main.cpp Harl.cpp
 OBJ_FILES = $(SRC_FILES:%.cpp=obj/%.o)

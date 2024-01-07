@@ -42,14 +42,21 @@ void Harl::error(void) const {
 
 
 void Harl::complain(std::string level) const {
-	std::string	levels[] = {"DEBUG", "INFO", "WARNING", "ERROR"};
-	void		(Harl::*function[])(void) const = {&Harl::debug, &Harl::info, &Harl::warning, &Harl::error};
+	switch (level[0]) {
 
-	for (int i = 0; i < 4; i ++){
-		if (level == levels[i]){
-			(this->*function[i])();
-			return ;
-		}
+		case 'D':
+			this->debug();
+			[[fallthrough]];
+		case 'I':
+			this->info();
+			[[fallthrough]];
+		case 'W':
+			this->warning();
+			[[fallthrough]];
+		case 'E':
+			this->error();
+			break;
+//		default:
+//			std::cerr << "Incorrect input\n";
 	}
-	std::cout << "*Complaining mumbles*\n";
 }
