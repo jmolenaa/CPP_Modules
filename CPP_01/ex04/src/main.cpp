@@ -29,6 +29,7 @@ bool	handleErrors(int argc, char *argv[]){
 bool	openFiles(std::ifstream& file, std::ofstream& output_file, const char* argv) {
 
 	std::string	fileName = argv;
+
 	file.open(fileName);
 	if (file.is_open() == false) {
 		std::cerr << "Input file couldn't be opened\n";

@@ -16,7 +16,7 @@
 Zombie*	zombieHorde(int N, std :: string name){
 	Zombie*	zombies;
 
-	if (N <= 0)
+	if (N < 0)
 		return nullptr;
 	try {
 		zombies = new Zombie[N];

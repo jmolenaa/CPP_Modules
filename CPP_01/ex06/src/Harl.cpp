@@ -56,7 +56,5 @@ void Harl::complain(std::string level) const {
 		case 'E':
 			this->error();
 			break;
-//		default:
-//			std::cerr << "Incorrect input\n";
 	}
 }

@@ -36,6 +36,7 @@ int	main(){
 		jim.attack();
 	}
 
+	std::cout << "\nSunny\n";
 	HumanB	Sunny("Sunny");
 	Sunny.attack();
 	{

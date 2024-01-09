@@ -11,12 +11,18 @@
 /* ************************************************************************** */
 
 #include "Zombie.hpp"
+#include <iostream>
 
 Zombie	*newZombie(std :: string name){
 
 	Zombie	*heapZombie;
 
-	heapZombie = new Zombie(name);
+	try {
+		heapZombie = new Zombie(name);
+	}
+	catch (std :: bad_alloc &ex){
+		std :: cerr << "Memory allocation failure\n";
+	}
 	return (heapZombie);
 
 }

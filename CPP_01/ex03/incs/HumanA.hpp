@@ -19,7 +19,7 @@ class HumanA{
 
 private:
 	std :: string const	_name;
-	const Weapon&		_weapon;
+	Weapon&				_weapon;
 
 public:
 	HumanA(const std :: string& name, Weapon& weapon);

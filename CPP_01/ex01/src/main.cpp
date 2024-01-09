@@ -18,7 +18,7 @@ Zombie*	zombieHorde(int N, std :: string name);
 int	main(){
 
 	Zombie*	zombies;
-	int		N = 10;
+	int		N = 2;
 
 	zombies = zombieHorde(N, "NPC");
 	for (int i = 0; i < N; i++) {

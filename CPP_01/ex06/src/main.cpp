@@ -21,8 +21,6 @@ bool	checkForValidInput(std::string level) {
 }
 
 int	main(int argc, char *argv[]){
-	Harl	Harl;
-
 	if (argc != 2){
 		std::cerr << "Incorrect amount of arguments\n";
 		return 1;
@@ -31,6 +29,8 @@ int	main(int argc, char *argv[]){
 		std::cerr << "Invalid complaint\n";
 		return 1;
 	}
+
+	Harl	Harl;
 	Harl.complain(argv[1]);
 	return 0;
 }
