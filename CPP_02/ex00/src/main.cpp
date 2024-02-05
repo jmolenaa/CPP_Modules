@@ -16,32 +16,32 @@
 int	main(){
 
 	Fixed a;
-	std :: cout << "\n";
+	std::cout << "\n";
 
 	Fixed b( a );
-	std :: cout << "\n";
+	std::cout << "\n";
 
 	Fixed c;
-	std :: cout << "\n";
+	std::cout << "\n";
 
 	c = b;
-	std :: cout << "\n";
+	std::cout << "\n";
 
 
 	std::cout << a.getRawBits() << std::endl;
 	std::cout << b.getRawBits() << std::endl;
 	std::cout << c.getRawBits() << std::endl;
 
-	std :: cout << "\n";
+	std::cout << "\n";
 
 	Fixed d = b;
 
-	std :: cout << "\n";
+	std::cout << "\n";
 
 	d.setRawBits(40);
 	std::cout << d.getRawBits() << "\n";
 
-	std :: cout << "\n";
+	std::cout << "\n";
 
 	return 0;
 }
