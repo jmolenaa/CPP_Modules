@@ -17,6 +17,16 @@ Fixed::Fixed() : _value(0) {
 	std::cout << "Default constructor of Fixed class called\n";
 }
 
+Fixed::Fixed(int const val) {
+	std::cout << "Parameterized integer constructor of Fixed class called\n";
+	this->_value = val << _fractional_bits;
+}
+
+Fixed::Fixed(float const val) {
+	std::cout << "Parameterized float constructor of Fixed class called\n";
+	this->_value = (int)(val * (1 << _fractional_bits));
+}
+
 Fixed::Fixed(Fixed const &src) : _value(src._value) {
 	std::cout << "Copy constructor for Fixed class called\n";
 }
@@ -34,6 +44,14 @@ Fixed&	Fixed::operator=(Fixed const &rhs) {
 	return (*this);
 }
 
+int Fixed::toInt() const {
+	return (this->_value >> _fractional_bits);
+}
+
+float Fixed::toFloat() const {
+	return ((float)this->_value / (1 << _fractional_bits));
+}
+
 int Fixed::getRawBits() const {
 	std::cout << "getRawBits called\n";
 	return this->_value;
@@ -42,4 +60,9 @@ int Fixed::getRawBits() const {
 void Fixed::setRawBits(int const raw) {
 	std::cout << "setRawBits called\n";
 	this->_value = raw;
+}
+
+std::ostream&	operator<<(std::ostream& outstream, Fixed const & rhs){
+	outstream << rhs.toFloat();
+	return (outstream);
 }

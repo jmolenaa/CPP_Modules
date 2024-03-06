@@ -19,6 +19,9 @@ public:
 
 	// Default
 	Fixed();
+	// Parameterized constr
+	Fixed(int val);
+	Fixed(float val);
 	// Copy constr
 	Fixed(Fixed const & src);
 	// Assignment operator overload
@@ -30,11 +33,15 @@ public:
 	int		getRawBits() const;
 	void	setRawBits(int raw);
 
+	float	toFloat() const;
+	int		toInt() const;
 
 private:
 	static int const	_fractional_bits = 8;
 	int					_value;
 
 };
+
+std::ostream&	operator<<(std::ostream& outstream, Fixed const & rhs);
 
 #endif
