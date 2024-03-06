@@ -17,8 +17,12 @@ add_executable(usefulfixed ex01/src/main.cpp
 target_include_directories(usefulfixed PUBLIC
         ${CMAKE_CURRENT_SOURCE_DIR}/ex01/incs)
 
-#add_executable(ex02 ex02/main.cpp
-#        ex02/Fixed.cpp)
+add_executable(workwork ex02/src/main.cpp
+        ex02/src/Fixed.cpp)
+
+target_include_directories(workwork PUBLIC
+        ${CMAKE_CURRENT_SOURCE_DIR}/ex02/incs)
+
 #
 #add_executable(ex03
 #        ex03/Fixed.cpp
