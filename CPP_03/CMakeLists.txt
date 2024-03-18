@@ -11,12 +11,13 @@ add_executable(open ex00/src/ClapTrap.cpp
 target_include_directories(open PUBLIC
         ${CMAKE_CURRENT_SOURCE_DIR}/ex00/incs)
 
-#add_executable(usefulfixed ex01/src/main.cpp
-#        ex01/src/Fixed.cpp)
-#
-#target_include_directories(usefulfixed PUBLIC
-#        ${CMAKE_CURRENT_SOURCE_DIR}/ex01/incs)
-#
+add_executable(serena ex01/src/main.cpp
+        ex01/src/ClapTrap.cpp
+        ex01/src/ScavTrap.cpp)
+
+target_include_directories(serena PUBLIC
+        ${CMAKE_CURRENT_SOURCE_DIR}/ex01/incs)
+
 #add_executable(workwork ex02/src/main.cpp
 #        ex02/src/Fixed.cpp)
 #
