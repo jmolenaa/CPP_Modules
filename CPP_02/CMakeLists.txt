@@ -23,10 +23,11 @@ add_executable(workwork ex02/src/main.cpp
 target_include_directories(workwork PUBLIC
         ${CMAKE_CURRENT_SOURCE_DIR}/ex02/incs)
 
-#
-#add_executable(ex03
-#        ex03/Fixed.cpp
-#        ex03/main.cpp
-#        ex03/Point.cpp
-#        ex03/Point.h
-#        ex03/bsp.cpp)
+add_executable(BSP
+        ex03/src/Fixed.cpp
+        ex03/src/main.cpp
+        ex03/src/Point.cpp
+        ex03/src/bsp.cpp)
+
+target_include_directories(BSP PUBLIC
+        ${CMAKE_CURRENT_SOURCE_DIR}/ex03/incs)
