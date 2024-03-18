@@ -69,7 +69,7 @@ Fixed Fixed::operator/(const Fixed &rhs) const {
 
 	Fixed	temp;
 
-	temp._value = this->_value << _fractional_bits / rhs._value;
+	temp._value = (this->_value << _fractional_bits) / rhs._value;
 	return (temp);
 
 }
