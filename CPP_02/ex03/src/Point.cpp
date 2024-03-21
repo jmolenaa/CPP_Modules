@@ -14,23 +14,37 @@
 #include <iostream>
 
 Point::Point() : _x(0), _y(0){
-	std::cout << "Default constructor called\n";
+//	std::cout << "Default constructor called\n";
 }
 
 Point::Point(const Point &src) : _x(src._x), _y(src._y){
-	std::cout << "Copy constructor called\n";
+//	std::cout << "Copy constructor called\n";
 }
 
 Point::Point(const float a, const float b) : _x(a), _y(b){
-	std::cout << "Parameterized constructor called\n";
+//	std::cout << "Parameterized constructor called\n";
 }
 
 Point::~Point() {
-	std::cout << "Destructor called\n";
+//	std::cout << "Destructor called\n";
 }
 
 Point &Point::operator=(const Point &rhs) {
-	std::cerr << "Assignment operator called, doesn't do anything you dummy\n";
+//	std::cerr << "Assignment operator called, doesn't do anything you dummy\n";
 	(void)rhs;
 	return (*this);
+}
+
+Fixed Point::getX() const {
+	return (this->_x);
+}
+
+Fixed Point::getY() const {
+	return (this->_y);
+}
+
+bool Point::operator==(const Point &rhs) const {
+	if (this->getX() == rhs.getX() && this->getY() == rhs.getY())
+		return (true);
+	return (false);
 }

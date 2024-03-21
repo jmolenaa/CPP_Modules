@@ -28,6 +28,9 @@ public:
 	Point&	operator=(Point const& rhs);
 	// Destructor
 	~Point();
+	Fixed	getX() const;
+	Fixed	getY() const;
+	bool	operator==(Point const&rhs) const;
 
 private:
 	Fixed const	_x;
