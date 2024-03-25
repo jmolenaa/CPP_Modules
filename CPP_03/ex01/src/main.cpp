@@ -13,6 +13,12 @@
 #include "ScavTrap.hpp"
 #include <iostream>
 
+#define RED "\x1b[31m"
+#define GREEN "\x1b[32m"
+#define CYAN "\x1b[36m"
+#define YELLOW "\x1b[33m"
+#define RESET "\x1b[0m"
+
 void	testsExZero() {
 	{
 		std::cout << "\nUsing up all energy\n\n";
@@ -60,8 +66,51 @@ void	testsExZero() {
 	}
 }
 
-int	main(){
-	ScavTrap	a;
+void	testExOne(){
+	{
+		std::cout << GREEN << "Showing proper construction chaining for all constructors, different messages and stats\n\n" << RESET;
+		std::cout << CYAN << "Default constructor\n" << RESET;
+		ScavTrap	a;
+		a.printClaptrap();
+	}
+	{
+		std::cout << CYAN << "\nParameterized constructor\n" << RESET;
+		ScavTrap	a("Evaluator");
+		a.printClaptrap();
+	}
+	{
+		std::cout << CYAN << "\nCopy constructor\n" << RESET;
+		ScavTrap	a;
+		a.takeDamage(20);
+		ScavTrap	b(a);
+		b.printClaptrap();
+	}
+	{
+		std::cout << CYAN << "\nAssignment operator\n" << RESET;
+		ScavTrap	a;
+		ScavTrap	b("Scooter");
+		a.takeDamage(50);
+		b = a;
+		b.printClaptrap();
+	}
+	{
+		std::cout << GREEN << "\nShowing different messages for attacking\n\n" << RESET;
+		ClapTrap	a;
+		ScavTrap	b;
+		a.attack("Lillith");
+		b.attack("Roland");
 
-	a.lol();
+		std::cout << GREEN << "\nGuard gate\n" << RESET;
+		b.guardGate();
+		b.takeDamage(100);
+		b.guardGate();
+	}
+
+
+}
+
+int	main(){
+//	testsExZero();
+	testExOne();
+
 }

@@ -13,17 +13,15 @@
 #include "ClapTrap.hpp"
 #include <iostream>
 
-unsigned int const	ClapTrap::_maxHP = 10;
-
-ClapTrap::ClapTrap() : _name("Jack"), _hp(10), _ep(10), _ad(0){
+ClapTrap::ClapTrap() : _name("Jack"), _hp(10), _ep(10), _ad(0), _maxHp(10){
 	std::cout << "Claptrap default constructor called\n";
 }
 
-ClapTrap::ClapTrap(ClapTrap const& src) : _name(src._name), _hp(src._hp), _ep(src._ep), _ad(src._ad){
+ClapTrap::ClapTrap(ClapTrap const& src) : _name(src._name), _hp(src._hp), _ep(src._ep), _ad(src._ad), _maxHp(src._maxHp){
 	std::cout << "Claptrap copy constructor called\n";
 }
 
-ClapTrap::ClapTrap(std::string const& name) : _name(name), _hp(10), _ep(10), _ad(0){
+ClapTrap::ClapTrap(std::string const& name) : _name(name), _hp(10), _ep(10), _ad(0), _maxHp(10) {
 	std::cout << "Claptrap parameterized constructor called\n";
 }
 
@@ -33,12 +31,14 @@ ClapTrap::~ClapTrap() {
 
 ClapTrap &ClapTrap::operator=(const ClapTrap &rhs) {
 	std::cout << "Claptrap assignment operator called\n";
-	if (this == &rhs)
+	if (this == &rhs) {
 		return (*this);
+	}
 	this->_name = rhs._name;
 	this->_hp = rhs._hp;
 	this->_ad = rhs._ad;
 	this->_ep = rhs._ep;
+	this->_maxHp = rhs._maxHp;
 	return (*this);
 }
 
@@ -60,20 +60,20 @@ void ClapTrap::takeDamage(unsigned int amount) {
 		std::cout << "He's already dead :(\n";
 	}
 	else {
-		if ((unsigned int)this->_hp < amount || amount > ClapTrap::_maxHP) {
+		if ((unsigned int)this->_hp < amount || amount > this->_maxHp) {
 			amount = this->_hp;
 		}
-		std::cout << "Claptrap " << this->_name << " takes " << amount << " damage\n";
+		std::cout << this->_name << " takes " << amount << " damage\n";
 		this->_hp -= amount;
 	}
 }
 
 void ClapTrap::beRepaired(unsigned int amount) {
 	if (this->_ep > 0 && this->_hp > 0) {
-		if (amount + this->_hp > ClapTrap::_maxHP){
+		if (amount + this->_hp > this->_maxHp){
 			amount = 10 - this->_hp;
 		}
-		std::cout << "Claptrap " << this->_name << " heals for " << amount << " hit points\n";
+		std::cout << this->_name << " heals for " << amount << " hit points\n";
 		--this->_ep;
 		this->_hp += amount;
 	}
@@ -81,10 +81,10 @@ void ClapTrap::beRepaired(unsigned int amount) {
 		std::cout << "No energy lol, cannot be repaired\n";
 	}
 	else {
-		std::cout << "Claptrap dead lol, cannot be repaired\n";
+		std::cout << this->_name << " is dead lol, cannot be repaired\n";
 	}
 }
 
 void	ClapTrap::printClaptrap() {
-	std::cout << "Claptrap named " << this->_name << " has " << this->_hp << " health and " << this->_ep << " energy\n";
+	std::cout << this->_name << " has " << this->_hp << " health, " << this->_ep << " energy and " << this->_ad << " attack damage\n";
 }

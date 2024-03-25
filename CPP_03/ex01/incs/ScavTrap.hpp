@@ -18,10 +18,15 @@
 class ScavTrap : public ClapTrap {
 
 public:
-	void	lol();
+	// Constructors, destructor and assignment operator
+	ScavTrap();
+	ScavTrap(ScavTrap const& src);
+	ScavTrap(std::string const& name);
+	ScavTrap&	operator=(ScavTrap const& rhs);
+	~ScavTrap();
 
-private:
-
+	void	guardGate();
+	void	attack(std::string const& target);
 
 };
 
