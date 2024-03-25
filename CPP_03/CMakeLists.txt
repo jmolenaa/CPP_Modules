@@ -18,12 +18,14 @@ add_executable(serena ex01/src/main.cpp
 target_include_directories(serena PUBLIC
         ${CMAKE_CURRENT_SOURCE_DIR}/ex01/incs)
 
-#add_executable(workwork ex02/src/main.cpp
-#        ex02/src/Fixed.cpp)
-#
-#target_include_directories(workwork PUBLIC
-#        ${CMAKE_CURRENT_SOURCE_DIR}/ex02/incs)
-#
+add_executable(repetitive ex02/src/main.cpp
+        ex02/src/ClapTrap.cpp
+        ex02/src/ScavTrap.cpp
+        ex02/src/FragTrap.cpp)
+
+target_include_directories(repetitive PUBLIC
+        ${CMAKE_CURRENT_SOURCE_DIR}/ex02/incs)
+
 #add_executable(BSP
 #        ex03/src/Fixed.cpp
 #        ex03/src/main.cpp
