@@ -21,7 +21,7 @@ class Animal {
 public:
 	// OCF stuff
 	Animal();
-	~Animal();
+	virtual ~Animal();
 	Animal(Animal const& src);
 	Animal&	operator=(Animal const&rhs);
 

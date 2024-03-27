@@ -28,9 +28,9 @@ public:
 	WrongAnimal&	operator=(WrongAnimal const& rhs);
 	~WrongAnimal();
 
-	void		makeSound() const;
 	void		setType(std::string type);
 	std::string	get_type() const;
+	void		makeSound() const;
 };
 
 

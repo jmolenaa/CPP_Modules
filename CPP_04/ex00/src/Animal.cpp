@@ -15,16 +15,16 @@
 #include <iostream>
 #include "defines.h"
 
-Animal::Animal() : _type("Cockroach"){
-	std::cout << YELLOW << "Cockroach default created\n" << RESET;
+Animal::Animal() : _type("Animal"){
+	std::cout << YELLOW << "Animal default created\n" << RESET;
 }
 
 Animal::Animal(const Animal &src) : _type(src.getType()){
-	std::cout << YELLOW << "Cockroach copy created\n" << RESET;
+	std::cout << YELLOW << "Animal copy created\n" << RESET;
 }
 
 Animal &Animal::operator=(const Animal &rhs) {
-	std::cout << YELLOW << "Cockroach assigned\n" << RESET;
+	std::cout << YELLOW << "Animal assigned\n" << RESET;
 	if (this != &rhs) {
 		this->setType(rhs.getType());
 	}
@@ -32,7 +32,7 @@ Animal &Animal::operator=(const Animal &rhs) {
 }
 
 Animal::~Animal() {
-	std::cout << YELLOW << "Cockroach disintegrated\n" << RESET;
+	std::cout << YELLOW << "Animal disintegrated\n" << RESET;
 }
 
 void Animal::makeSound() const {

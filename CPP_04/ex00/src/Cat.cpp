@@ -40,3 +40,4 @@ Cat::~Cat() {
 void Cat::makeSound() const {
 	std::cout << CYAN << "I am purrfectly sane today\n" << RESET;
 }
+
