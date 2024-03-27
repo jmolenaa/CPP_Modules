@@ -3,7 +3,7 @@ project(cpp04)
 
 set(CMAKE_CXX_STANDARD 11)
 
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -Wextra -Werror")
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -Wextra -Werror -fsanitize=address")
 
 add_executable(polymorph
             ex00/src/main.cpp
@@ -15,4 +15,13 @@ add_executable(polymorph
 
 target_include_directories(polymorph PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/ex00/incs)
 
+add_executable(brain
+        ex01/src/main.cpp
+        ex01/src/Animal.cpp
+        ex01/src/Dog.cpp
+        ex01/src/Cat.cpp
+        ex01/src/WrongAnimal.cpp
+        ex01/src/WrongCat.cpp
+        ex01/src/Brain.cpp)
 
+target_include_directories(brain PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/ex01/incs)
