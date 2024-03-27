@@ -25,3 +25,14 @@ add_executable(brain
         ex01/src/Brain.cpp)
 
 target_include_directories(brain PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/ex01/incs)
+
+add_executable(abstract
+        ex02/src/main.cpp
+        ex02/src/AAnimal.cpp
+        ex02/src/Dog.cpp
+        ex02/src/Cat.cpp
+        ex02/src/WrongAnimal.cpp
+        ex02/src/WrongCat.cpp
+        ex02/src/Brain.cpp)
+
+target_include_directories(abstract PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/ex02/incs)
