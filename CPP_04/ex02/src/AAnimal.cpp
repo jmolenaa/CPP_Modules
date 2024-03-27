@@ -35,10 +35,6 @@ AAnimal::~AAnimal() {
 	std::cout << YELLOW << "AAnimal disintegrated\n" << RESET;
 }
 
-void AAnimal::makeSound() const {
-	std::cout << YELLOW << "* scuttling noises *\n" << RESET;
-}
-
 std::string AAnimal::getType() const {
 	return (this->_type);
 }

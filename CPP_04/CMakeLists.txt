@@ -36,3 +36,15 @@ add_executable(abstract
         ex02/src/Brain.cpp)
 
 target_include_directories(abstract PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/ex02/incs)
+
+add_executable(interface
+        ex03/src/main.cpp
+        ex03/src/AMateria.cpp
+        ex03/src/Ice.cpp
+        ex03/src/Cure.cpp
+        ex03/src/Character.cpp
+        ex03/src/MateriaSource.cpp
+        ex03/src/ICharacter.cpp
+        ex03/src/IMateriaSource.cpp)
+
+target_include_directories(interface PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/ex03/incs)
