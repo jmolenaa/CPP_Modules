@@ -8,9 +8,10 @@ END=\033[0m
 
 # variables
 
-NAME =
-HEADER_FILES  =
-SRC_FILES = main.cpp
+NAME = brain
+HEADER_FILES  = Animal.hpp defines.h WrongAnimal.hpp Cat.hpp Dog.hpp WrongCat.hpp Brain.hpp
+
+SRC_FILES = Animal.cpp Dog.cpp WrongAnimal.cpp Cat.cpp main.cpp WrongCat.cpp Brain.cpp
 OBJ_FILES = $(SRC_FILES:%.cpp=obj/%.o)
 HEADERS = $(HEADER_FILES:%=incs/%)
 OBJ_DIR = obj
