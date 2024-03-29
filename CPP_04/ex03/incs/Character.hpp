@@ -28,7 +28,8 @@ public:
 	Character();
 	Character(Character const& src);
 	Character&	operator=(Character const& rhs);
-	~Character();
+	~Character() override;
+	explicit Character(std::string name);
 
 	const std::string & getName() const override;
 	void equip(AMateria *m) override;
@@ -36,6 +37,8 @@ public:
 	void use(int idx, ICharacter &target) override;
 
 private:
+	AMateria*	_inventory[4] {nullptr};
+	size_t		_held_items = 0;
 	std::string	_name;
 };
 

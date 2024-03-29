@@ -18,26 +18,26 @@
 #include <iostream>
 #include "defines.h"
 
-Ice::Ice() {
-
+Ice::Ice() : AMateria("ice") {
 }
 
-Ice::Ice(const Ice &src) {
-
+Ice::Ice(const Ice &src) : AMateria(src.getType()){
 }
 
 Ice &Ice::operator=(const Ice &rhs) {
-
+	if (this != &rhs) {
+		this->setType(rhs.getType());
+	}
+	return *this;
 }
 
-Ice::~Ice() noexcept {
-
-}
+//Ice::~Ice() {
+//}
 
 AMateria *Ice::clone() const {
-
+	return (new Ice(*this));
 }
 
 void Ice::use(ICharacter &target) {
-
+	std::cout << "* shoots an ice bolt at " << target.getName() << " *\n";
 }

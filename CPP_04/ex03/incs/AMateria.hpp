@@ -20,18 +20,21 @@
 #include <iostream>
 #include "ICharacter.hpp"
 
+class ICharacter;
+
 class AMateria {
 
 protected:
+	std::string	_type;
+	void		setType(std::string type);
+
+public:
 	// OCF stuff
 	AMateria() = default;
 	AMateria(AMateria const& src) = default;
 	AMateria&	operator=(AMateria const& rhs);
 	virtual ~AMateria() = default;
 
-	std::string	_type;
-
-public:
 	explicit AMateria(std::string const& type);
 
 	std::string const&	getType() const;

@@ -26,7 +26,7 @@ public:
 	Cure();
 	Cure(Cure const& src);
 	Cure&	operator=(Cure const& rhs);
-	~Cure();
+	~Cure() override = default;
 
 	AMateria * clone() const override;
 	void use(ICharacter &target) override;

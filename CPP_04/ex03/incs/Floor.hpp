@@ -1,37 +1,44 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   ICharacter.hpp                                     :+:    :+:            */
+/*   Floor.hpp                                          :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: jmolenaa <jmolenaa@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2024/03/27 16:25:25 by jmolenaa      #+#    #+#                 */
-/*   Updated: 2024/03/27 16:25:25 by jmolenaa      ########   odam.nl         */
+/*   Created: 2024/03/28 11:08:17 by jmolenaa      #+#    #+#                 */
+/*   Updated: 2024/03/28 11:08:17 by jmolenaa      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 //
-// Created by jmolenaa on 27-3-24.
+// Created by jmolenaa on 28-3-24.
 //
 
-#ifndef CPP04_ICHARACTER_HPP
-#define CPP04_ICHARACTER_HPP
+#ifndef CPP04_FLOOR_HPP
+#define CPP04_FLOOR_HPP
 
 #include "AMateria.hpp"
 
-class AMateria;
+class Floor {
 
-// TODO
-// ask about if the interfaces need constructors at all, probalby?
-class ICharacter {
+private:
+	// OCF stuff
+	Floor();
+	Floor(Floor const& src) = default;
+	Floor&	operator=(Floor const& rhs) = default;
+
+	AMateria**	floorClutter;
+	size_t		currentCapacity = 10;
+	size_t		currentItems = 0;
+
+	void	increaseCapacity();
+
 public:
-	virtual ~ICharacter() = default;
-	virtual std::string const& getName() const = 0;
-	virtual void	equip(AMateria* m) = 0;
-	virtual void	unequip(int idx) = 0;
-	virtual void	use(int idx, ICharacter& target) = 0;
+	~Floor();
+	static Floor&	getFloor();
+	void			addToFloor(AMateria* toAdd);
 
 };
 
 
-#endif //CPP04_ICHARACTER_HPP
+#endif //CPP04_FLOOR_HPP

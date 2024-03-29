@@ -27,7 +27,6 @@
 //}
 
 AMateria::AMateria(const std::string& 	type) : _type(type) {
-
 }
 
 AMateria &AMateria::operator=(const AMateria &rhs) {
@@ -45,9 +44,12 @@ const std::string &AMateria::getType() const {
 	return (this->_type);
 }
 
+void AMateria::setType(std::string type) {
+	this->_type = std::move(type);
+}
+
 // TODO
 // comment out and see if compiles
 void AMateria::use(ICharacter &target) {
-	(void)target;
-	std::cout << "What am I using on \n";
+	std::cout << "What am I using on" << target.getName() << "?\n";
 }

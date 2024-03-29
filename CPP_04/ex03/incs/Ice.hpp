@@ -19,6 +19,8 @@
 
 #include "AMateria.hpp"
 
+// TODO
+// overriding destructors
 class Ice : public AMateria {
 
 public:
@@ -26,7 +28,7 @@ public:
 	Ice();
 	Ice(Ice const& src);
 	Ice&	operator=(Ice const& rhs);
-	~Ice();
+	~Ice() override = default;
 
 	AMateria * clone() const override;
 	void use(ICharacter &target) override;

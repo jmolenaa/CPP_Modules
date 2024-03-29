@@ -21,16 +21,18 @@
 
 class MateriaSource : public IMateriaSource{
 
-	//TODO
-	// Also add the inventory stuff for 4 materias
+private:
+	AMateria*	_learntMaterias[4] {nullptr};
+	size_t		_alreadyKnown = 0;
+
 public:
 	// OCF stuff
-	MateriaSource();
+	MateriaSource() = default;
 	MateriaSource(MateriaSource const& src);
 	MateriaSource&	operator=(MateriaSource const& rhs);
-	~MateriaSource();
+	~MateriaSource() override;
 
-	void learnMateria(AMateria *) override;
+	void learnMateria(AMateria *newMateria) override;
 	AMateria * createMateria(const std::string &type) override;
 };
 

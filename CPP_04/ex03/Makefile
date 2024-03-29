@@ -8,9 +8,10 @@ END=\033[0m
 
 # variables
 
-NAME =
-HEADER_FILES  =
-SRC_FILES = main.cpp
+NAME = materia
+HEADER_FILES  = AMateria.hpp defines.h ICharacter.hpp Character.hpp Floor.hpp\
+				IMateriaSource.hpp Cure.hpp Ice.hpp MateriaSource.hpp
+SRC_FILES = main.cpp AMateria.cpp Character.cpp Cure.cpp Floor.cpp Ice.cpp MateriaSource.cpp
 OBJ_FILES = $(SRC_FILES:%.cpp=obj/%.o)
 HEADERS = $(HEADER_FILES:%=incs/%)
 OBJ_DIR = obj
