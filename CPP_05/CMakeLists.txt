@@ -17,3 +17,16 @@ add_executable(form
         ex01/src/Form.cpp)
 
 target_include_directories(form PUBLIC ex01/incs)
+
+add_executable(moreforms
+        ex02/src/main.cpp
+        ex02/src/Bureaucrat.cpp
+        ex02/src/AForm.cpp
+        ex02/src/ShrubberyCreationForm.cpp
+        ex02/src/RobotomyRequestForm.cpp
+        ex02/src/PresidentialPardonForm.cpp)
+
+target_include_directories(moreforms PUBLIC ex02/incs)
+
+
+
