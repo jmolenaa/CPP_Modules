@@ -10,3 +10,10 @@ add_executable(bureacrat
         ex00/src/Bureaucrat.cpp)
 
 target_include_directories(bureacrat PUBLIC ex00/incs)
+
+add_executable(form
+        ex01/src/main.cpp
+        ex01/src/Bureaucrat.cpp
+        ex01/src/Form.cpp)
+
+target_include_directories(form PUBLIC ex01/incs)
