@@ -23,11 +23,16 @@ ShrubberyCreationForm::ShrubberyCreationForm() : AForm("ShrubberyCreationForm", 
 }
 
 ShrubberyCreationForm::ShrubberyCreationForm(const ShrubberyCreationForm &src) : AForm(src) {
+	this->_target = src.getTarget();
 	std::cout << "Copied shrubbery\n";
 }
 
 ShrubberyCreationForm &ShrubberyCreationForm::operator=(const ShrubberyCreationForm &rhs) {
-	this->AForm::operator=(rhs);
+	std::cout << "Assigned shrubbery\n";
+	if (this != &rhs) {
+		this->AForm::operator=(rhs);
+		this->_target = rhs.getTarget();
+	}
 	return *this;
 }
 

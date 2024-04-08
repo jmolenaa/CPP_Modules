@@ -25,7 +25,7 @@ public:
 	ShrubberyCreationForm();
 	ShrubberyCreationForm(ShrubberyCreationForm const& src);
 	ShrubberyCreationForm&	operator=(ShrubberyCreationForm const& rhs);
-	ShrubberyCreationForm(std::string target);
+	explicit ShrubberyCreationForm(std::string target);
 	~ShrubberyCreationForm();
 
 	std::string	getTarget() const;
