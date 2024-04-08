@@ -54,6 +54,7 @@ void ShrubberyCreationForm::_executeForm() const {
 
 	if (shrubbery.is_open() == false) {
 		std::cerr << "Error opening file\n";
+		return ;
 	}
 	shrubbery << "\n"
 				 "                      ___\n"
