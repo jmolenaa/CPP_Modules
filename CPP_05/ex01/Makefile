@@ -8,9 +8,9 @@ END=\033[0m
 
 # variables
 
-NAME =
-HEADER_FILES  =
-SRC_FILES = main.cpp
+NAME = form
+HEADER_FILES  = Bureaucrat.hpp Form.hpp
+SRC_FILES = main.cpp Bureaucrat.cpp Form.cpp
 OBJ_FILES = $(SRC_FILES:%.cpp=obj/%.o)
 HEADERS = $(HEADER_FILES:%=incs/%)
 OBJ_DIR = obj
@@ -19,7 +19,7 @@ OBJ_DIR = obj
 
 CC = c++
 INCLUDES = -I incs
-CFLAGS = -Wall -Werror -Wextra
+CFLAGS = -Wall -Werror -Wextra -std=c++11
 ifdef DEBUG
 CFLAGS += -g -fsanitize=address
 endif
