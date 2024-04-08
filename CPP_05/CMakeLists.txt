@@ -28,5 +28,15 @@ add_executable(moreforms
 
 target_include_directories(moreforms PUBLIC ex02/incs)
 
+add_executable(intern
+        ex03/src/main.cpp
+        ex03/src/Bureaucrat.cpp
+        ex03/src/AForm.cpp
+        ex03/src/ShrubberyCreationForm.cpp
+        ex03/src/RobotomyRequestForm.cpp
+        ex03/src/PresidentialPardonForm.cpp
+        ex03/src/Intern.cpp)
+
+target_include_directories(intern PUBLIC ex03/incs)
 
 
