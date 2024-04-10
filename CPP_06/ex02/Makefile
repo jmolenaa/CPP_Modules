@@ -8,9 +8,9 @@ END=\033[0m
 
 # variables
 
-NAME =
-HEADER_FILES  =
-SRC_FILES = main.cpp
+NAME = identitycrisis
+HEADER_FILES  = Base.hpp
+SRC_FILES = main.cpp Base.cpp
 OBJ_FILES = $(SRC_FILES:%.cpp=obj/%.o)
 HEADERS = $(HEADER_FILES:%=incs/%)
 OBJ_DIR = obj
