@@ -18,3 +18,9 @@ add_executable(serializer
 
 target_include_directories(serializer PUBLIC ex01/incs)
 
+add_executable(identitycrisis
+        ex02/src/main.cpp
+        ex02/src/Base.cpp)
+
+target_include_directories(identitycrisis PUBLIC ex02/incs)
+
