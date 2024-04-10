@@ -130,10 +130,21 @@ static void	printDouble(std::string const& inputStr, bool limits[3]) {
 }
 
 static void	printPseudo(std::string const& inputStr, bool limits[3]) {
-	(void)inputStr;
 	(void)limits;
-	std::cout << "pseudo\n";
-
+	std::cout << "char: impossible\n";
+	std::cout << "int: impossible\n";
+	if (inputStr == "nan" || inputStr == "nanf") {
+		std::cout << "float: nanf\n";
+		std::cout << "double: nan\n";
+	}
+	else if (inputStr == "inf" || inputStr == "inff" || inputStr == "+inf" || inputStr == "+inff") {
+		std::cout << "float: inff\n";
+		std::cout << "double: inf\n";
+	}
+	else {
+		std::cout << "float: -inff\n";
+		std::cout << "double: -inf\n";
+	}
 }
 
 static void	isChar(std::string const& inputStr, printFunction* func) {
