@@ -10,3 +10,11 @@ add_executable(scalar
         ex00/src/ScalarConverter.cpp)
 
 target_include_directories(scalar PUBLIC ex00/incs)
+
+add_executable(serializer
+        ex01/src/main.cpp
+        ex01/src/Serializer.cpp
+        ex01/src/Data.cpp)
+
+target_include_directories(serializer PUBLIC ex01/incs)
+
