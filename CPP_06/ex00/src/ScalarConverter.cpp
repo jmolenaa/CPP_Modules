@@ -18,12 +18,68 @@
 #include <iostream>
 #include "defines.h"
 #include <cmath>
+#include <limits>
 
-typedef void	(*printFunction)(std::string const& inputStr);
+typedef void	(*printFunction)(std::string const& inputStr, bool	limits[3]);
 
-static void	printChar(std::string const& inputStr) {
+static void	checkLimits(bool limits[3], double num) {
+	if (num > static_cast<double>(std::numeric_limits<char>::max()) || num < static_cast<double>(std::numeric_limits<char>::min())) {
+		limits[0] = true;
+	}
+	if (num > static_cast<double>(std::numeric_limits<int>::max()) || num < static_cast<double>(std::numeric_limits<int>::min())) {
+		limits[1] = true;
+	}
+	if (num > static_cast<double>(std::numeric_limits<float>::max()) || num < static_cast<double>(std::numeric_limits<float>::lowest())) {
+		limits[2] = true;
+	}
+}
+
+static void	printSingleChar(char num, bool limit, bool hasNoDecimal) {
+	if (isprint(num) && !limit && hasNoDecimal) {
+		std::cout << "char: '" << num << "'\n";
+	}
+	else if (isascii(num) && !limit && hasNoDecimal) {
+		std::cout << "char: Non displayable\n";
+	}
+	else {
+		std::cout << "char: impossible\n";
+	}
+}
+
+static void	printSingleInt(int num, bool limit) {
+	if (limit) {
+		std::cout << "int: impossible\n";
+	}
+	else {
+		std::cout << "int: " << num << "\n";
+	}
+}
+
+static void	printSingleFloat(float num, bool limit, bool hasNoDecimal) {
+	if (limit) {
+		std::cout << "float: impossible\n";
+	}
+	else if (hasNoDecimal) {
+		std::cout << "float: " << num << ".0f\n";
+	}
+	else {
+		std::cout << "float: " << num << "f\n";
+	}
+}
+
+static void	printSingleDouble(double num, bool hasNoDecimal) {
+	if (hasNoDecimal) {
+		std::cout << "double: " << num << ".0\n";
+	}
+	else {
+		std::cout << "double: " << num << "\n";
+	}
+}
+
+static void	printChar(std::string const& inputStr, bool limits[3]) {
 	char	c = inputStr[1];
 
+	(void)limits;
 	if (!isprint(c)) {
 		std::cout << "char: Non displayable\n";
 	}
@@ -35,54 +91,47 @@ static void	printChar(std::string const& inputStr) {
 	std::cout << "double: " << static_cast<double>(c) << ".0\n";
 }
 
-static void	printSingleChar(char num) {
-	if (isprint(num)) {
-		std::cout << "char: '" << static_cast<char>(num) << "'\n";
-	}
-	else if (isascii(num)) {
-		std::cout << "char: Non displayable\n";
-	}
-	else {
-		std::cout << "char: impossible\n";
-	}
-}
-
-static void	printInt(std::string const& inputStr) {
+static void	printInt(std::string const& inputStr, bool limits[3]) {
 
 	int num = std::stoi(inputStr);
 
-	printSingleChar(static_cast<char>(num));
-	std::cout << "int: " << num << "\n";
-	std::cout << "float: " << static_cast<float>(num) << ".0f\n";
-	std::cout << "double: " << static_cast<double>(num) << ".0\n";
+	checkLimits(limits, static_cast<double>(num));
+
+	printSingleChar(static_cast<char>(num), limits[0], true);
+	printSingleInt(num, limits[1]);
+	printSingleFloat(static_cast<float>(num), limits[2], true);
+	printSingleDouble(static_cast<double>(num), true);
 }
 
-static void	printFloat(std::string const& inputStr) {
+static void	printFloat(std::string const& inputStr, bool limits[3]) {
 
 	float	num = std::stof(inputStr);
 	bool	hasNoDecimal = (std::floor(num) - num == 0);
-	if (hasNoDecimal) {
-		printSingleChar(static_cast<char>(num));
-		std::cout << "int: " << static_cast<int>(num) << "\n";
-		std::cout << "float: " << num << ".0f\n";
-		std::cout << "double: " << static_cast<double>(num) << ".0\n";
-	}
-	else {
-		std::cout << "char: impossible\n";
-		std::cout << "int: " << static_cast<int>(num) << "\n";
-		std::cout << "float: " << num << "f\n";
-		std::cout << "double: " << static_cast<double>(num) << "\n";
-	}
+
+	checkLimits(limits, static_cast<double>(num));
+
+	printSingleChar(static_cast<char>(num), limits[0], hasNoDecimal);
+	printSingleInt(static_cast<int>(num), limits[1]);
+	printSingleFloat(num, limits[2], hasNoDecimal);
+	printSingleDouble(static_cast<double>(num), hasNoDecimal);
 }
 
-static void	printDouble(std::string const& inputStr) {
-	(void)inputStr;
-	std::cout << "double\n";
+static void	printDouble(std::string const& inputStr, bool limits[3]) {
 
+	double	num = std::stod(inputStr);
+	bool	hasNoDecimal = (std::floor(num) - num == 0);
+
+	checkLimits(limits, num);
+
+	printSingleChar(static_cast<char>(num), limits[0], hasNoDecimal);
+	printSingleInt(static_cast<int>(num), limits[1]);
+	printSingleFloat(static_cast<float>(num), limits[2], hasNoDecimal);
+	printSingleDouble(num, hasNoDecimal);
 }
 
-static void	printPseudo(std::string const& inputStr) {
+static void	printPseudo(std::string const& inputStr, bool limits[3]) {
 	(void)inputStr;
+	(void)limits;
 	std::cout << "pseudo\n";
 
 }
@@ -156,7 +205,8 @@ static bool	isEdgeString(std::string const& inputStr) {
 
 void ScalarConverter::convert(std::string const &inputStr) {
 
-	printFunction	func = nullptr;
+	printFunction		func = nullptr;
+	bool					limits[3] = {0};
 
 	if (!isEdgeString(inputStr)) {
 		isChar(inputStr, &func);
@@ -169,7 +219,7 @@ void ScalarConverter::convert(std::string const &inputStr) {
 		return ;
 	}
 	try {
-		func(inputStr);
+		func(inputStr, limits);
 	}
 	catch (std::out_of_range& e) {
 		std::cout << "char: impossible\n";
