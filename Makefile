@@ -19,7 +19,7 @@ OBJ_DIR = obj
 
 CC = c++
 INCLUDES = -I incs
-CFLAGS = -Wall -Werror -Wextra
+CFLAGS = -Wall -Werror -Wextra -std=c++11
 ifdef DEBUG
 CFLAGS += -g -fsanitize=address
 endif
