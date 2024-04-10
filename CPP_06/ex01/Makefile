@@ -8,9 +8,9 @@ END=\033[0m
 
 # variables
 
-NAME =
-HEADER_FILES  =
-SRC_FILES = main.cpp
+NAME = serializer
+HEADER_FILES  = Data.hpp Serializer.hpp
+SRC_FILES = main.cpp Data.cpp Serializer.cpp
 OBJ_FILES = $(SRC_FILES:%.cpp=obj/%.o)
 HEADERS = $(HEADER_FILES:%=incs/%)
 OBJ_DIR = obj

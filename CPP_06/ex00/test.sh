@@ -23,6 +23,11 @@ echo -e $Blue"\nTesting integers\n"$Color_Off
 ./scalar +48
 ./scalar ++48
 ./scalar 0
+./scalar 300
+./scalar 256
+./scalar 2147483647
+./scalar 2147483648
+./scalar -2147483648
 ./scalar 123123213213
 echo -e $Blue"\nTesting floats\n"$Color_Off
 ./scalar 48.4f
@@ -31,11 +36,15 @@ echo -e $Blue"\nTesting floats\n"$Color_Off
 ./scalar 0.0f
 ./scalar 48.0f
 ./scalar 255.0f
+./scalar 256.0f
 ./scalar 300.0f
 ./scalar -123.0f
 ./scalar 255.5f
 ./scalar --48.4f
 ./scalar ++48.4f
+./scalar 2147483648.0f
+./scalar -2147483648.0f
+./scalar -2147483648.1f
 ./scalar 123123213213.0f
 ./scalar 12321321321321123123213221321321321312321321313.0f
 echo -e $Blue"\nTesting doubles\n"$Color_Off
@@ -50,6 +59,10 @@ echo -e $Blue"\nTesting doubles\n"$Color_Off
 ./scalar --48.0
 ./scalar ++48.0
 ./scalar 123123213213.0
+./scalar 2147483647.0
+./scalar 2147483648.0
+./scalar -2147483648.0
+./scalar -2147483648.1
 ./scalar 123213213213211231232132132132132131231231232131.0
 echo -e $Blue"\nTesting pseudos\n"$Color_Off
 ./scalar inf
