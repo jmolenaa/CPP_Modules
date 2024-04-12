@@ -1,41 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   whatever.hpp                                       :+:    :+:            */
+/*   iter.hpp                                           :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: jmolenaa <jmolenaa@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2024/04/12 10:20:05 by jmolenaa      #+#    #+#                 */
-/*   Updated: 2024/04/12 10:20:05 by jmolenaa      ########   odam.nl         */
+/*   Created: 2024/04/12 14:00:56 by jmolenaa      #+#    #+#                 */
+/*   Updated: 2024/04/12 14:00:56 by jmolenaa      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef WHATEVER_HPP
-# define WHATEVER_HPP
+//
+// Created by jmolenaa on 12-4-24.
+//
 
-#include <iostream>
+#ifndef CPP_07_ITER_HPP
+#define CPP_07_ITER_HPP
+
+#include <cstddef>
 
 template <typename T>
-void	swap(T& a, T& b) {
-	T	temp = b;
-	b = a;
-	a = temp;
-}
+void	iter(T* array, size_t arrSize, void (*func)(T&)) {
 
-template<typename T>
-T const&	min(T const& first, T const& second) {
-	if (first < second) {
-		return first;
+	if (func != nullptr) {
+		for (size_t i = 0; i < arrSize; ++i) {
+			func(array[i]);
+		}
 	}
-	return second;
 }
 
-template<typename T>
-T const&	max(T const& first, T const& second) {
-	if (first > second) {
-		return first;
-	}
-	return second;
-}
-
-#endif
+#endif //CPP_07_ITER_HPP

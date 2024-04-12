@@ -11,3 +11,9 @@ add_executable(functions
         ex00/src/Fixed.cpp)
 
 target_include_directories(functions PUBLIC ex00/incs)
+
+add_executable(iter
+        ex01/src/main.cpp
+        ex01/src/Fixed.cpp)
+
+target_include_directories(iter PUBLIC ex01/incs)
