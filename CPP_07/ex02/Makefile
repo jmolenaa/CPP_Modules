@@ -8,9 +8,9 @@ END=\033[0m
 
 # variables
 
-NAME =
-HEADER_FILES  =
-SRC_FILES = main.cpp
+NAME = array
+HEADER_FILES  = Array.hpp Fixed.hpp
+SRC_FILES = main.cpp Fixed.cpp
 OBJ_FILES = $(SRC_FILES:%.cpp=obj/%.o)
 HEADERS = $(HEADER_FILES:%=incs/%)
 OBJ_DIR = obj
@@ -45,8 +45,12 @@ clean:
 fclean: clean
 	@echo "${RED}Removing ${NAME} ${END}"
 	@rm -rf $(NAME)
+	@rm -rf intra
 
 d:
 	@$(MAKE) DEBUG=1 all
+
+intra:
+	$(CC) $(INCLUDES) $(CFLAGS) -o intra src/mainIntra.cpp src/Fixed.cpp -fsanitize=address
 
 re: fclean all

@@ -8,9 +8,9 @@ END=\033[0m
 
 # variables
 
-NAME =
-HEADER_FILES  =
-SRC_FILES = main.cpp
+NAME = iter
+HEADER_FILES  = Fixed.hpp iter.hpp
+SRC_FILES = main.cpp Fixed.cpp
 OBJ_FILES = $(SRC_FILES:%.cpp=obj/%.o)
 HEADERS = $(HEADER_FILES:%=incs/%)
 OBJ_DIR = obj
