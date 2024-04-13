@@ -13,5 +13,6 @@ do
   mkdir CPP_0$1/ex0$i/incs
   mkdir CPP_0$1/ex0$i/src
   cp Makefile CPP_0$1/ex0$i/
+  cp defines.h CPP_0$1/ex0$i/incs/
 done
 
