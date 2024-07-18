@@ -9,3 +9,9 @@ add_executable(easyfind ex00/src/main.cpp)
 
 target_include_directories(easyfind PUBLIC
         ${CMAKE_CURRENT_SOURCE_DIR}/ex00/incs)
+
+add_executable(span ex01/src/main.cpp
+                    ex01/src/Span.cpp)
+
+target_include_directories(span PUBLIC
+        ${CMAKE_CURRENT_SOURCE_DIR}/ex01/incs)
