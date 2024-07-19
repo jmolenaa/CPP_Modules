@@ -15,3 +15,9 @@ add_executable(span ex01/src/main.cpp
 
 target_include_directories(span PUBLIC
         ${CMAKE_CURRENT_SOURCE_DIR}/ex01/incs)
+
+add_executable(mutant ex02/src/main.cpp)
+
+target_include_directories(mutant PUBLIC
+        ${CMAKE_CURRENT_SOURCE_DIR}/ex02/incs)
+
