@@ -27,7 +27,7 @@ Span::Span() : _maximumSize(0) {
 Span::Span(unsigned int N) : _maximumSize(N) {
 }
 
-Span::Span(const Span &src) : _maximumSize(src._maximumSize) {
+Span::Span(const Span &src) : _maximumSize(src._maximumSize), _numbers(src._numbers) {
 }
 
 Span &Span::operator=(const Span &rhs) {
