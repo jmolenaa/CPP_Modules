@@ -25,15 +25,21 @@ class BitcoinExchange {
 
 private:
 	std::unordered_map<Date, float>	database;
+	Date							earliestDate;
+	Date							oldestDate;
 
 public:
-	BitcoinExchange() = default;
-	BitcoinExchange(BitcoinExchange const& src) = default;
-	BitcoinExchange&	operator=(BitcoinExchange const& rhs) = default;
+	BitcoinExchange();
+	BitcoinExchange(BitcoinExchange const& src);
+	BitcoinExchange&	operator=(BitcoinExchange const& rhs);
 	explicit BitcoinExchange(std::string const& databaseName);
 	~BitcoinExchange() = default;
 
 	void	parseDatabase(std::ifstream& databaseFile);
+	void	checkOldestEarliestValues(Date const& newDate);
+	float	convertSingleValue(std::string const& date, float const& value);
+	const Date &getEarliestDate() const;
+	const Date &getOldestDate() const;
 
 	class BitcoinExchangeException : public std::exception {
 	public:

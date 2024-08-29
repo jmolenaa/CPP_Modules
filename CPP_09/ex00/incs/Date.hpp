@@ -22,7 +22,6 @@
 class Date {
 
 private:
-	std::string	_date;
 	int			_year;
 	int			_month;
 	int			_day;
@@ -34,18 +33,22 @@ private:
 
 public:
 	Date() = default;
-	Date(Date const& src);
+	Date(Date const& src) = default;
 	explicit Date(std::string const& newDate);
 	~Date() = default;
-	Date&	operator=(Date const& rhs);
+	Date&	operator=(Date const& rhs) = default;
 
-	std::string const&	getDate() const;
 	int					getYear() const;
 	int					getMonth() const;
 	int					getDay() const;
 	void 				setDate(std::string const &newDate);
 
 	bool	operator==(Date const& other) const;
+	bool	operator<(Date const& rhs) const;
+	bool	operator<=(Date const& rhs) const;
+	bool	operator>(Date const& rhs) const;
+	bool	operator>=(Date const& rhs) const;
+	Date&	operator--();
 
 	class InvalidDateFormatException : public std::exception {
 	public:
@@ -62,7 +65,11 @@ namespace std {
 	template <>
 	struct hash<Date> {
 		std::size_t operator()(Date const& date) const {
-			return (std::hash<std::string>()(date.getDate()));
+			std::size_t hash1 = std::hash<int>()(date.getDay());
+			std::size_t hash2 = std::hash<int>()(date.getMonth());
+			std::size_t hash3 = std::hash<int>()(date.getYear());
+
+			return (hash1 ^ (hash2 << 1) ^ (hash3 << 2));
 		}
 	};
 }

@@ -18,23 +18,19 @@
 #include "defines.h"
 #include <sstream>
 
-//BitcoinExchange::BitcoinExchange() {
-//
-//}
-//
-//BitcoinExchange::BitcoinExchange(const BitcoinExchange &src) {
-//	(void)src;
-//
-//}
+BitcoinExchange::BitcoinExchange() : earliestDate(), oldestDate() {}
 
-//BitcoinExchange &BitcoinExchange::operator=(const BitcoinExchange &rhs) {
-//	if (this != &rhs) {
-//
-//	}
-//	return *this;
-//}
+BitcoinExchange::BitcoinExchange(const BitcoinExchange &src) : earliestDate(src.getEarliestDate()), oldestDate(src.getOldestDate()) {}
 
-BitcoinExchange::BitcoinExchange(const std::string &databaseName) {
+BitcoinExchange &BitcoinExchange::operator=(const BitcoinExchange &rhs) {
+	if (this != &rhs) {
+		this->earliestDate = rhs.getEarliestDate();
+		this->oldestDate = rhs.getOldestDate();
+	}
+	return *this;
+}
+
+BitcoinExchange::BitcoinExchange(const std::string &databaseName) : earliestDate(), oldestDate() {
 	if (databaseName.length() < 4 || databaseName.substr(databaseName.length() - 4, 4) != ".csv") {
 		throw BitcoinExchangeException("Wrong file extension: " + databaseName + ", file should end with '.csv'");
 	}
@@ -45,6 +41,19 @@ BitcoinExchange::BitcoinExchange(const std::string &databaseName) {
 	}
 	parseDatabase(databaseFile);
 	databaseFile.close();
+}
+
+void BitcoinExchange::checkOldestEarliestValues(const Date &newDate) {
+	if (this->database.size() == 1) {
+		earliestDate = newDate;
+		oldestDate = newDate;
+	}
+	else if (newDate < earliestDate) {
+		earliestDate = newDate;
+	}
+	else if (newDate > oldestDate) {
+		oldestDate = newDate;
+	}
 }
 
 void BitcoinExchange::parseDatabase(std::ifstream &databaseFile) {
@@ -67,12 +76,42 @@ void BitcoinExchange::parseDatabase(std::ifstream &databaseFile) {
 		}
 
 		try {
-			this->database[Date(date)] = value;
+			Date	newDate(date);
+			this->database[newDate] = value;
+			checkOldestEarliestValues(newDate);
 		}
 		catch (Date::InvalidDateFormatException& e) {
 			std::cout << REDSTRING("Skipping line "  + std::to_string(i) + ", due to wrong formatting of date\n");
 		}
 	}
+}
+
+float BitcoinExchange::convertSingleValue(const std::string &date, const float &value) {
+	(void)date;
+	(void)value;
+	try {
+		Date	dateToEvaluate(date);
+
+		while (dateToEvaluate > this->earliestDate) {
+			if (this->database.count(dateToEvaluate) != 0) {
+				return (value * this->database[dateToEvaluate]);
+			}
+			--dateToEvaluate;
+		}
+		std::cout << RED << "Error: date earlier than any in the database\n" << RESET;
+	}
+	catch (Date::InvalidDateFormatException& e) {
+		std::cout << RED << "Error: " << e.what() << ": " << date << "\n" << RESET;
+	}
+	return -1;
+}
+
+const Date &BitcoinExchange::getEarliestDate() const {
+	return this->earliestDate;
+}
+
+const Date &BitcoinExchange::getOldestDate() const {
+	return this->oldestDate;
 }
 
 BitcoinExchange::BitcoinExchangeException::BitcoinExchangeException(const std::string &reason) {

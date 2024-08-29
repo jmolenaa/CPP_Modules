@@ -14,7 +14,7 @@
 #include "BitcoinExchange.hpp"
 #include <sstream>
 
-bool	isValidFormat(std::string delimiter, float value, std::stringstream& lineStream, std::string const& line) {
+bool	isValidFormat(std::string const& delimiter, float value, std::stringstream& lineStream, std::string const& line) {
 	if (lineStream.fail() || !lineStream.eof()) {
 		std::cout << REDSTRING("Error: bad format: " + line + "\n");
 	}
@@ -22,10 +22,10 @@ bool	isValidFormat(std::string delimiter, float value, std::stringstream& lineSt
 		std::cout << REDSTRING("Error: bad format: " + line + "\n");
 	}
 	else if (value < 0) {
-		std::cout << REDSTRING("Error: not a positive number\n" + line + "\n");
+		std::cout << REDSTRING("Error: not a positive number: " + line + "\n");
 	}
 	else if (value > 1000) {
-		std::cout << REDSTRING("Error: number too large\n" + line + "\n");
+		std::cout << REDSTRING("Error: number too large: " + line + "\n");
 	}
 	else {
 		return true;
@@ -33,7 +33,7 @@ bool	isValidFormat(std::string delimiter, float value, std::stringstream& lineSt
 	return false;
 }
 
-void	convertValues(std::ifstream& databaseToEvaluate) {
+void	convertValues(std::ifstream& databaseToEvaluate, BitcoinExchange& priceDatabase) {
 	std::string	line;
 
 	std::getline(databaseToEvaluate, line);
@@ -42,9 +42,13 @@ void	convertValues(std::ifstream& databaseToEvaluate) {
 		std::string			date;
 		std::string			delimiter;
 		float				value;
+
 		lineStream >> date >> delimiter >> value;
 		if (isValidFormat(delimiter, value, lineStream, line)) {
-			std::cout << GREENSTRING("Success: " + line + "\n");
+			float walletValue = priceDatabase.convertSingleValue(date, value);
+			if (walletValue >= 0) {
+				std::cout << GREEN << date << " => " << value << " = " << walletValue << "\n" << RESET;
+			}
 		}
 	}
 }
@@ -54,19 +58,22 @@ int	main(int argc, char *argv[]) {
 		std::cout << REDSTRING("Program requires 2 arguments\n");
 		return (1);
 	}
-	try {
-		BitcoinExchange("data.csv");
-	}
-	catch (BitcoinExchange::BitcoinExchangeException &e) {
-		std::cout << e.what();
-		return (1);
-	}
 
 	std::ifstream	databaseToEvaluate(argv[1]);
 	if (databaseToEvaluate.fail()) {
 		std::cout << REDSTRING("Failed to open second database\n");
 		return (1);
 	}
-	convertValues(databaseToEvaluate);
+
+	try {
+		BitcoinExchange	priceDatabase("data.csv");
+		convertValues(databaseToEvaluate, priceDatabase);
+	}
+	catch (BitcoinExchange::BitcoinExchangeException &e) {
+		std::cout << e.what();
+		return (1);
+	}
+
+	databaseToEvaluate.close();
 	return (0);
 }

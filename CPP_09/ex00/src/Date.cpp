@@ -18,23 +18,8 @@
 #include <ctime>
 #include <algorithm>
 
-Date::Date(const Date &src) {
-	this->setDate(src.getDate());
-}
-
 Date::Date(std::string const& newDate) {
 	this->setDate(newDate);
-}
-
-Date &Date::operator=(const Date &rhs) {
-	if (this != &rhs) {
-		this->setDate(rhs.getDate());
-	}
-	return *this;
-}
-
-std::string const &Date::getDate() const {
-	return this->_date;
 }
 
 void	Date::_validateDate() const {
@@ -48,20 +33,11 @@ void	Date::_validateDate() const {
 	infoAboutCurrentTime->tm_mday = this->getDay();
 	mktime(infoAboutCurrentTime);
 	if (infoAboutCurrentTime->tm_year != this->getYear() ||
-	infoAboutCurrentTime->tm_mon != this->getMonth() ||
-	infoAboutCurrentTime->tm_mday != this->getDay()) {
+		infoAboutCurrentTime->tm_mon != this->getMonth() ||
+		infoAboutCurrentTime->tm_mday != this->getDay()) {
 		throw Date::InvalidDateFormatException("invalid date");
 	}
 }
-
-//	std::cout << "\n\nbefore\n";
-//	std::cout << infoAboutCurrentTime->tm_year << "\n";
-//	std::cout << infoAboutCurrentTime->tm_mon << "\n";
-//	std::cout << infoAboutCurrentTime->tm_mday << "\n";
-//	std::cout << "after\n";
-//	std::cout << infoAboutCurrentTime->tm_year << "\n";
-//	std::cout << infoAboutCurrentTime->tm_mon << "\n";
-//	std::cout << infoAboutCurrentTime->tm_mday << "\n\n";
 
 void Date::setDate(const std::string &newDate) {
 	if (std::count(newDate.begin(), newDate.end(), '-') != 2) {
@@ -71,7 +47,6 @@ void Date::setDate(const std::string &newDate) {
 	this->_setMonth(newDate.substr(newDate.find('-') + 1, newDate.find_last_of('-') - newDate.find('-') - 1));
 	this->_setDay(newDate.substr(newDate.find_last_of('-') + 1, std::string::npos));
 	this->_validateDate();
-	this->_date = newDate;
 }
 
 int Date::getYear() const {
@@ -114,11 +89,49 @@ void Date::_setDay(std::string const& newDay) {
 }
 
 bool Date::operator==(const Date &other) const {
-	return (this->getDate() == other.getDate());
+	return (this->getYear() == other.getYear() && this->getMonth() == other.getMonth() && this->getDay() == other.getDay());
+}
+
+static struct tm*	getTimeStruct(Date const& date) {
+	time_t		currentTime;
+	struct tm*	infoAboutCurrentTime;
+
+	time(&currentTime);
+	infoAboutCurrentTime = localtime(&currentTime);
+	infoAboutCurrentTime->tm_year = date.getYear();
+	infoAboutCurrentTime->tm_mon = date.getMonth();
+	infoAboutCurrentTime->tm_mday = date.getDay();
+	return (infoAboutCurrentTime);
+}
+
+bool Date::operator<(const Date &rhs) const {
+	return (mktime(getTimeStruct(*this)) < mktime(getTimeStruct(rhs)));
+}
+
+bool Date::operator>(const Date &rhs) const {
+	return (mktime(getTimeStruct(*this)) > mktime(getTimeStruct(rhs)));
+}
+
+bool Date::operator<=(const Date &rhs) const {
+	return (mktime(getTimeStruct(*this)) <= mktime(getTimeStruct(rhs)));
+}
+
+bool Date::operator>=(const Date &rhs) const {
+	return (mktime(getTimeStruct(*this)) >= mktime(getTimeStruct(rhs)));
+}
+
+Date& Date::operator--() {
+	--this->_day;
+	struct tm*	timeStruct = getTimeStruct(*this);
+	mktime(timeStruct);
+	this->_day = timeStruct->tm_mday;
+	this->_month = timeStruct->tm_mon;
+	this->_year = timeStruct->tm_year;
+	return *this;
 }
 
 Date::InvalidDateFormatException::InvalidDateFormatException(const std::string &reason) {
-	this->_reason = "Invalid date format: " + reason + "\n";
+	this->_reason = "Invalid date format: " + reason;
 }
 
 char const *Date::InvalidDateFormatException::what() const noexcept {
