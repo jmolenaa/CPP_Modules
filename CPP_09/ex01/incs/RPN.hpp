@@ -17,13 +17,23 @@
 #ifndef CPP_09_RPN_HPP
 #define CPP_09_RPN_HPP
 
+#include <stack>
+#include <string>
 
 class RPN {
 
 public:
+	RPN() = default;
+	RPN(RPN const& src) = default;
+	RPN&	operator=(RPN const& rhs) = default;
+	~RPN() = default;
+
+	void	processExpression(std::string const& expressionString);
+	int		handleOperation(char operato);
+	int		popStack();
 
 private:
-it
+	std::stack<int>	operands;
 };
 
 
