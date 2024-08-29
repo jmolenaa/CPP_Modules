@@ -77,6 +77,10 @@ void BitcoinExchange::parseDatabase(std::ifstream &databaseFile) {
 
 		try {
 			Date	newDate(date);
+			if (this->database.count(newDate) == 1) { // check if date already in database
+				std::cout << REDSTRING("Skipping line "  + std::to_string(i) + ", date already in database\n");
+				continue;
+			}
 			this->database[newDate] = value;
 			checkOldestEarliestValues(newDate);
 		}
@@ -92,7 +96,7 @@ float BitcoinExchange::convertSingleValue(const std::string &date, const float &
 	try {
 		Date	dateToEvaluate(date);
 
-		while (dateToEvaluate > this->earliestDate) {
+		while (dateToEvaluate >= this->earliestDate) {
 			if (this->database.count(dateToEvaluate) != 0) {
 				return (value * this->database[dateToEvaluate]);
 			}
