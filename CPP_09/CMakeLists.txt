@@ -12,11 +12,11 @@ add_executable(btc ex00/src/main.cpp
 target_include_directories(btc PUBLIC
         ${CMAKE_CURRENT_SOURCE_DIR}/ex00/incs)
 
-#add_executable(span ex01/src/main.cpp
-#        ex01/src/Span.cpp)
-#
-#target_include_directories(span PUBLIC
-#        ${CMAKE_CURRENT_SOURCE_DIR}/ex01/incs)
+add_executable(rpn ex01/src/main.cpp
+                ex01/src/RPN.cpp)
+
+target_include_directories(rpn PUBLIC
+        ${CMAKE_CURRENT_SOURCE_DIR}/ex01/incs)
 #
 #add_executable(mutant ex02/src/main.cpp)
 #
