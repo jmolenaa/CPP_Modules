@@ -17,9 +17,10 @@ add_executable(rpn ex01/src/main.cpp
 
 target_include_directories(rpn PUBLIC
         ${CMAKE_CURRENT_SOURCE_DIR}/ex01/incs)
-#
-#add_executable(mutant ex02/src/main.cpp)
-#
-#target_include_directories(mutant PUBLIC
-#        ${CMAKE_CURRENT_SOURCE_DIR}/ex02/incs)
+
+add_executable(merge ex02/src/main.cpp
+        ex02/src/PmergeMe.cpp)
+
+target_include_directories(merge PUBLIC
+        ${CMAKE_CURRENT_SOURCE_DIR}/ex02/incs)
 
