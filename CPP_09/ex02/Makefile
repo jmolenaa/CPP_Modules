@@ -10,7 +10,7 @@ END=\033[0m
 
 NAME = PmergeMe
 HEADER_FILES  = PmergeMe.hpp
-SRC_FILES = main.cpp PmergeMe.cpp
+SRC_FILES = main.cpp
 OBJ_FILES = $(SRC_FILES:%.cpp=obj/%.o)
 HEADERS = $(HEADER_FILES:%=incs/%)
 OBJ_DIR = obj

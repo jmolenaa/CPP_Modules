@@ -14,6 +14,8 @@
 #include "PmergeMe.hpp"
 #include "defines.h"
 #include <vector>
+#include <list>
+#include <deque>
 #include <algorithm>
 
 void	fillVector(char *argv[], std::vector<int>& veccie)
@@ -34,8 +36,6 @@ void	checkDuplicates(std::vector<int> const& veccie) {
 	}
 }
 
-#include <forward_list>
-
 int	main(int argc, char *argv[])
 {
 	std::vector<int>	veccie(argc - 1);
@@ -55,8 +55,14 @@ int	main(int argc, char *argv[])
 		std::cout << "huh" << std::endl;
 		checkDuplicates(veccie);
 
-		PmergeMe	sorter;
-		sorter.sortContainer(veccie);
+//		PmergeMe	sorter;
+		std::list<int>	listie(veccie.begin(), veccie.end());
+		std::deque<int>	dequeie(veccie.begin(), veccie.end());
+
+//		PmergeMe<std::vector<int>>::sortContainer(veccie);
+//		PmergeMe<std::deque<int>>::sortContainer(dequeie);
+		PmergeMe<std::list<int>>::sortContainer(listie);
+
 	}
 	catch (std::out_of_range &e) {
 		std::cout << REDSTRING("One of the numbers is outside of integer range\n");

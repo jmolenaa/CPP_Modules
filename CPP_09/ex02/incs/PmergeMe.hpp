@@ -20,6 +20,7 @@
 #include <vector>
 #include <cstddef>
 
+template <typename T>
 class PmergeMe {
 
 public:
@@ -28,23 +29,24 @@ public:
 	PmergeMe&	operator=(PmergeMe const& rhs) = default;
 	~PmergeMe() = default;
 
-	void	sortContainer(std::vector<int> &container);
+	static void	sortContainer(T &container);
 
 private:
-	void			_sortIndividualPairs(std::vector<int> &container) const;
-	void			_setSize(std::vector<int> &container);
-	static void		_mergeSortPairs(std::vector<int> &container, size_t left, size_t right);
-	static void		_mergePairs(std::vector<int> &container, size_t left, size_t mid, size_t right);
-	static void		_insertAndEraseElement(std::vector<int>& container, std::vector<int>::iterator insertPos, std::vector<int>::iterator erasePos);
-	void			_prepMainAndPendChain(std::vector<int> &container) const;
-	void			_insertSecondPairElement(std::vector<int>& container) const;
+	static void		_sortIndividualPairs(T &container, size_t containerSize);
+	static size_t	_setSize(T &container);
+	static void		_mergeSortPairs(T &container, size_t left, size_t right);
+	static void		_mergePairs(T &container, size_t left, size_t mid, size_t right);
+	static void		_insertAndEraseElement(T& container, typename T::iterator insertPos, typename T::iterator erasePos);
+	static void		_prepMainAndPendChain(T &container, size_t containerSize);
+	static void		_insertSecondPairElement(T& container, size_t containerSize);
 	static size_t	_jacobsthal(int n);
-	void			_binaryInsert(std::vector<int>& container, std::vector<int>::iterator nbr, size_t start, size_t end) const;
+	static void		_binaryInsert(T& container, typename T::iterator nbr, size_t start, size_t end);
 
 
 	size_t				_containerSize;
 
 };
 
+#include "../src/PmergeMe.cpp"
 
 #endif //CPP09_PMERGEME_HPP
