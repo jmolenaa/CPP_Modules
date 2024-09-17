@@ -32,17 +32,17 @@ public:
 
 private:
 	void			_sortIndividualPairs(std::vector<int> &container) const;
-	void			_setSizeAndStray(std::vector<int> &container);
-	void			_mergeSortPairs(std::vector<int> &container, size_t left, size_t right) const;
-	void			_mergePairs(std::vector<int> &container, size_t left, size_t mid, size_t right) const;
-	void			_fillMainAndPendChain(std::vector<int> const& container, std::vector<int>& mainChain, std::vector<int>& pendChain) const;
+	void			_setSize(std::vector<int> &container);
+	static void		_mergeSortPairs(std::vector<int> &container, size_t left, size_t right);
+	static void		_mergePairs(std::vector<int> &container, size_t left, size_t mid, size_t right);
+	static void		_insertAndEraseElement(std::vector<int>& container, std::vector<int>::iterator insertPos, std::vector<int>::iterator erasePos);
+	void			_prepMainAndPendChain(std::vector<int> &container) const;
 	void			_insertSecondPairElement(std::vector<int>& container) const;
 	static size_t	_jacobsthal(int n);
-	void			_binaryInsert(std::vector<int>& container, int nbr, size_t start, size_t end) const;
+	void			_binaryInsert(std::vector<int>& container, std::vector<int>::iterator nbr, size_t start, size_t end) const;
 
 
 	size_t				_containerSize;
-	int					_stray;
 
 };
 

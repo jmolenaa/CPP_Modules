@@ -24,6 +24,7 @@ void	fillVector(char *argv[], std::vector<int>& veccie)
 			throw std::invalid_argument("Empty string or invalid characters in argument: " + stringNumber);
 		}
 		veccie[i] = stoi(stringNumber);
+//		std::cout << "size and stray" << std::endl;
 	}
 }
 
@@ -33,12 +34,25 @@ void	checkDuplicates(std::vector<int> const& veccie) {
 	}
 }
 
+#include <forward_list>
+
 int	main(int argc, char *argv[])
 {
 	std::vector<int>	veccie(argc - 1);
 
+//	std::forward_list<int>	listie{1, 2, 10, 12};
+//
+//	auto it	= listie.begin();
+//	auto ite = listie.end();
+//	while (it < ite) {
+//
+//		++it;
+//	}
+
 	try {
+		std::cout << "size and stray" << std::endl;
 		fillVector(argv, veccie);
+		std::cout << "huh" << std::endl;
 		checkDuplicates(veccie);
 
 		PmergeMe	sorter;
