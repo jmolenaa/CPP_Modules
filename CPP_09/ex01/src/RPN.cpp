@@ -55,7 +55,6 @@ int RPN::handleOperation(char operato) {
 			return -1;
 	}
 	this->operands.push(newNumber);
-//	std::cout << newNumber << "\n";
 	return 1;
 }
 
@@ -75,7 +74,6 @@ void RPN::processExpression(std::string const& expressionString) {
 		else if (handleOperation(token[0]) == -1) {
 			return;
 		}
-//		std::cout << token << "\n";
 	}
 	if (this->operands.size() != 1) {
 		std::cout << REDSTRING("Wrong ratio of operands to operators, there should be one more operand than operators\n");

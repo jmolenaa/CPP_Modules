@@ -9,7 +9,7 @@ END=\033[0m
 # variables
 
 NAME = btc
-HEADER_FILES  = BitcoinExchange.hpp
+HEADER_FILES  = BitcoinExchange.hpp Date.hpp
 SRC_FILES = BitcoinExchange.cpp Date.cpp main.cpp
 OBJ_FILES = $(SRC_FILES:%.cpp=obj/%.o)
 HEADERS = $(HEADER_FILES:%=incs/%)

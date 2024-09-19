@@ -19,6 +19,10 @@
 
 #include <vector>
 #include <cstddef>
+#include <list>
+
+typedef std::vector<int>	intVec;
+typedef std::list<int>		intList;
 
 template <typename T>
 class PmergeMe {
@@ -36,7 +40,8 @@ private:
 	static size_t	_setSize(T &container);
 	static void		_mergeSortPairs(T &container, size_t left, size_t right);
 	static void		_mergePairs(T &container, size_t left, size_t mid, size_t right);
-	static void		_insertAndEraseElement(T& container, typename T::iterator insertPos, typename T::iterator erasePos);
+	static void		_insertAndEraseElement(T& container, typename T::iterator& insertPos, typename T::iterator& erasePos);
+	static void		_movePair(T& container, typename T::iterator& insertPos, typename T::iterator& erasePos);
 	static void		_prepMainAndPendChain(T &container, size_t containerSize);
 	static void		_insertSecondPairElement(T& container, size_t containerSize);
 	static size_t	_jacobsthal(int n);
@@ -47,6 +52,6 @@ private:
 
 };
 
-#include "../src/PmergeMe.cpp"
+#include "PmergeMe.tpp"
 
 #endif //CPP09_PMERGEME_HPP

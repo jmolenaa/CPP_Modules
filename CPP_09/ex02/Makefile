@@ -9,7 +9,7 @@ END=\033[0m
 # variables
 
 NAME = PmergeMe
-HEADER_FILES  = PmergeMe.hpp
+HEADER_FILES  = PmergeMe.hpp PmergeMe.tpp
 SRC_FILES = main.cpp
 OBJ_FILES = $(SRC_FILES:%.cpp=obj/%.o)
 HEADERS = $(HEADER_FILES:%=incs/%)

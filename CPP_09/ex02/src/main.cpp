@@ -15,7 +15,6 @@
 #include "defines.h"
 #include <vector>
 #include <list>
-#include <deque>
 #include <algorithm>
 
 void	fillVector(char *argv[], std::vector<int>& veccie)
@@ -26,43 +25,55 @@ void	fillVector(char *argv[], std::vector<int>& veccie)
 			throw std::invalid_argument("Empty string or invalid characters in argument: " + stringNumber);
 		}
 		veccie[i] = stoi(stringNumber);
-//		std::cout << "size and stray" << std::endl;
 	}
 }
 
-void	checkDuplicates(std::vector<int> const& veccie) {
-	if (std::any_of(veccie.begin(), veccie.end(), [veccie](int i){return (std::count(veccie.begin(), veccie.end(), i) != 1);})) {
+void	checkDuplicates(std::vector<int> veccie) {
+	std::sort(veccie.begin(), veccie.end());
+	if (std::adjacent_find(veccie.begin(), veccie.end()) != veccie.end()) {
 		throw std::invalid_argument("Duplicate numbers in input");
 	}
+}
+
+template <typename T>
+void	printForOutput(std::string const& text, T const& container) {
+	std::cout << text;
+	size_t i = 0;
+	for (int number : container) {
+		if (i == 10) {
+			std::cout << "[...]";
+			break ;
+		}
+		std::cout << number << " ";
+		++i;
+	}
+	std::cout << "\n";
+}
+
+template <typename T>
+void	sortAndPrint(std::string const& containerType, T& container, bool printSorted) {
+	auto	begin = std::chrono::high_resolution_clock::now();
+	PmergeMe<T>::sortContainer(container);
+	auto	end = std::chrono::high_resolution_clock::now();
+	if (printSorted) {
+		printForOutput("After: ", container);
+	}
+	std::cout << "Is it sorted: " << std::boolalpha << std::is_sorted(container.begin(), container.end());
+	std::cout << ". Time to process a range of " << container.size() << " elements with std::" << containerType << ": " <<  std::chrono::duration_cast<std::chrono::microseconds>(end - begin).count() << "us\n";
 }
 
 int	main(int argc, char *argv[])
 {
 	std::vector<int>	veccie(argc - 1);
 
-//	std::forward_list<int>	listie{1, 2, 10, 12};
-//
-//	auto it	= listie.begin();
-//	auto ite = listie.end();
-//	while (it < ite) {
-//
-//		++it;
-//	}
-
 	try {
-		std::cout << "size and stray" << std::endl;
 		fillVector(argv, veccie);
-		std::cout << "huh" << std::endl;
 		checkDuplicates(veccie);
-
-//		PmergeMe	sorter;
 		std::list<int>	listie(veccie.begin(), veccie.end());
-		std::deque<int>	dequeie(veccie.begin(), veccie.end());
 
-//		PmergeMe<std::vector<int>>::sortContainer(veccie);
-//		PmergeMe<std::deque<int>>::sortContainer(dequeie);
-		PmergeMe<std::list<int>>::sortContainer(listie);
-
+		printForOutput("Before: ", veccie);
+		sortAndPrint("vector", veccie, true);
+		sortAndPrint("list", listie, false);
 	}
 	catch (std::out_of_range &e) {
 		std::cout << REDSTRING("One of the numbers is outside of integer range\n");
@@ -72,5 +83,4 @@ int	main(int argc, char *argv[])
 		std::cout << REDSTRING(e.what()) << "\n";
 		return (1);
 	}
-//	std::cout << veccie.size() << "\n";
 }

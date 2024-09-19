@@ -71,6 +71,7 @@ int	main(int argc, char *argv[]) {
 	}
 	catch (BitcoinExchange::BitcoinExchangeException &e) {
 		std::cout << e.what();
+		databaseToEvaluate.close();
 		return (1);
 	}
 

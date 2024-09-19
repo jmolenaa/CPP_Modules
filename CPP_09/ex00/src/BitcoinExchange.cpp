@@ -91,8 +91,6 @@ void BitcoinExchange::parseDatabase(std::ifstream &databaseFile) {
 }
 
 float BitcoinExchange::convertSingleValue(const std::string &date, const float &value) {
-	(void)date;
-	(void)value;
 	try {
 		Date	dateToEvaluate(date);
 
