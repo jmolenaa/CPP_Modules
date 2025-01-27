@@ -1,4 +1,4 @@
-# C++ - Module 01
+# CPP Module 01
 
 C++ Module 01 focuses on memory allocation, pointers to members, references, and the switch statement. This module continues your journey into C++ by diving deeper into its unique features.
 
