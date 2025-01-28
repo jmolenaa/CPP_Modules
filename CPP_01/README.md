@@ -12,7 +12,7 @@ Through this module, you will learn:
 
 ## Table of Contents
 
-| **Chapter**                                    | **Description**                                                                                     |
+| **Exercise**                                    | **Description**                                                                                     |
 |------------------------------------------------|-----------------------------------------------------------------------------------------------------|
 | [**Exercise 00: BraiiiiiiinnnzzzZ**](https://github.com/jmolenaa/CPP_Modules/tree/main/CPP_01/ex00) | Create a `Zombie` class and explore memory allocation (heap vs stack).                             |
 | [**Exercise 01: Moar brainz!**](https://github.com/jmolenaa/CPP_Modules/tree/main/CPP_01/ex01) | Build a horde of zombies using dynamic memory allocation.                                           |
