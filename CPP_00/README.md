@@ -11,7 +11,7 @@ Through this module, you will learn:
 
 ## Table of Contents
 
-| **Chapter**                   | **Description**                                                                              |
+| **Exercise**                   | **Description**                                                                              |
 |--------------------------------|----------------------------------------------------------------------------------------------|
 | [**Exercise 00: Megaphone**](https://github.com/jmolenaa/CPP_Modules/tree/main/CPP_00/ex00)     | A program to demonstrate basic string manipulation and input/output handling.                |
 | [**Exercise 01: My Awesome PhoneBook**](https://github.com/jmolenaa/CPP_Modules/tree/main/CPP_00/ex01) | Implement a simple phonebook application using classes and arrays.                       |
