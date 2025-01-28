@@ -11,7 +11,7 @@ Through this module, you will learn:
 
 ## Table of Contents
 
-| **Chapter**                              | **Description**                                                                                     |
+| **Exercise**                              | **Description**                                                                                     |
 |------------------------------------------|-----------------------------------------------------------------------------------------------------|
 | [**Exercise 00: My First Class in Orthodox Canonical Form**](https://github.com/jmolenaa/CPP_Modules/tree/main/CPP_02/ex00) | Create a simple fixed-point number class adhering to the Orthodox Canonical Class Form.            |
 | [**Exercise 01: Towards a More Useful Fixed-Point Number Class**](https://github.com/jmolenaa/CPP_Modules/tree/main/CPP_02/ex01) | Enhance the Fixed class with conversion constructors and additional functionality.                  |
