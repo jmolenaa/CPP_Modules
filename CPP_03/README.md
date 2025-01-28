@@ -12,7 +12,7 @@ Through this module, you will learn:
 
 ## Table of Contents
 
-| **Chapter**                              | **Description**                                                                                     |
+| **Exercise**                              | **Description**                                                                                     |
 |------------------------------------------|-----------------------------------------------------------------------------------------------------|
 | [**Exercise 00: Aaaaand... OPEN!**](https://github.com/jmolenaa/CPP_Modules/tree/main/CPP_03/ex00)    | Implement the `ClapTrap` class with basic attributes and functions to simulate simple robot actions. |
 | [**Exercise 01: Serena, my love!**](https://github.com/jmolenaa/CPP_Modules/tree/main/CPP_03/ex01)    | Create the `ScavTrap` class, a derived class of `ClapTrap`, with additional attributes and behaviors. |
