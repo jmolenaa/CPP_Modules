@@ -8,9 +8,11 @@ END=\033[0m
 
 # variables
 
-NAME =
-HEADER_FILES  =
-SRC_FILES = main.cpp
+NAME = clappie
+HEADER_FILES  = ClapTrap.hpp defines.h
+
+SRC_FILES = ClapTrap.cpp main.cpp
+
 OBJ_FILES = $(SRC_FILES:%.cpp=obj/%.o)
 HEADERS = $(HEADER_FILES:%=incs/%)
 OBJ_DIR = obj
