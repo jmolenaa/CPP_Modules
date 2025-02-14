@@ -1,8 +1,11 @@
 #!/bin/bash
 
+# Just a simple bash script to create the directory structure for a module plus adds a default Makefile to the roots fo the exercises
+# Use by running the script with two arguments, first being the number of the module, the second being however many exercises there are
+
 if [ $# != 2 ]
 then
-  echo Wrong usage lol
+  echo "usage: ./directories.sh [module number] [amount of exercises in module]"
   exit
 fi
 
